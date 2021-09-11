@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-library-polyfill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "build/vite-plugin-library-polyfill.cjs.js",
   "module": "build/vite-plugin-library-polyfill.esm.js",
   "typings": "build/types/vite-plugin-library-polyfill.d.ts",
