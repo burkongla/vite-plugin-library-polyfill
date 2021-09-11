@@ -39,6 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/generator": "^7.15.4",
+    "@jest/types": "^27.1.1",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -57,7 +58,7 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "rollup-plugin-uglify": "^6.0.4",
     "shelljs": "^0.8.4",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^27.0.5",
     "ts-node": "^10.0.0",
     "tslib": "^2.2.0",
     "typescript": "^4.3.2",

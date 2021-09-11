@@ -1,26 +1,12 @@
 import { Plugin } from 'vite';
-import babel, { NodePath } from '@babel/core';
-import generate from '@babel/generator';
 import createFilter from './filter';
-import { polyfillUndeclaredVariable } from './polyfill';
 import { TransformResult as TransformResult_2 } from 'rollup';
+import { transformUndeclaredVariables } from './lib';
 
 export type Options = {
   include?: string | string[] | undefined;
   exclude?: string | string[] | undefined;
   skipPreBuild?: boolean;
-};
-
-/**
- * babel.traverse
- */
-const visitor = {
-  enter(path: NodePath<babel.types.Node>) {
-    /**
-     * 填充未声明的变量对其进行声明
-     */
-    polyfillUndeclaredVariable(path);
-  }
 };
 
 /**
@@ -42,25 +28,11 @@ export function vitePluginLibraryPolyfill(
       ) {
         return null;
       }
-
-      /**
-       * 代码转换 => 解析成 ast => 遍历 ast 树 => 再建并生成处理后的代码
-       */
-      const result = babel.transform(code);
-      if (!result || !result.code) {
-        throw Error(`babel.transform error, result: ${result}`);
-      }
-      const ast = babel.parse(result.code);
-      if (!ast) {
-        throw Error(`ast error: ${ast}`);
-      }
-      babel.traverse(ast, visitor);
-      const output = generate(ast);
-
+      const output = transformUndeclaredVariables(code);
       return {
         code: output.code,
         map: output.map
-      }
+      };
     }
   };
 }
