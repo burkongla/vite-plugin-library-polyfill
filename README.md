@@ -1,13 +1,13 @@
 # vite-plugin-library-polyfill
 
-该库参考 [vite-plugin-commonjs](#https://github.com/originjs/vite-plugins/tree/main/packages/vite-plugin-commonjs)
+The library reference [vite-plugin-commonjs](#https://github.com/originjs/vite-plugins/tree/main/packages/vite-plugin-commonjs)
 
-对一些未正确编码的库进行 polyfill，如下：
+Polyfill some libraries that are not coded correctly, as follows:
 
 * [x] [lamejs](#https://github.com/zhuker/lamejs)
 * [ ] [emoji-picker-react](#https://github.com/ealush/emoji-picker-react)
 
-## 安装
+## Install
 
 ```shell
 $ npm install vite-plugin-library-polyfill --save-dev
@@ -19,7 +19,7 @@ or
 $ yarn add vite-plugin-library-polyfill -D
 ```
 
-## 如何使用
+## Usage
 
 ```ts
 import { vitePluginLibraryPolyfilllugin } from 'vite-plugin-library-polyfill';
