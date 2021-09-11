@@ -1,9 +1,9 @@
-import { TransformResult } from 'esbuild';
 import { Plugin } from 'vite';
 import babel, { NodePath } from '@babel/core';
 import generate from '@babel/generator';
 import createFilter from './filter';
 import { polyfillUndeclaredVariable } from './polyfill';
+import { TransformResult as TransformResult_2 } from 'rollup';
 
 export type Options = {
   include?: string | string[] | undefined;
@@ -33,9 +33,9 @@ export function vitePluginLibraryPolyfill(
 ): Plugin {
   const filter = createFilter(options.include, options.exclude);
   return {
-    name: 'vitePluginLibPolyfill',
-    apply: 'serve',
-    transform(code: string, id: string): TransformResult | null {
+    name: 'vite-plugin-library-polyfill',
+    enforce: 'pre',
+    transform(code: string, id: string): Promise<TransformResult_2> | TransformResult_2 {
       if (
         !filter(id) ||
         (options.skipPreBuild && id.indexOf('/node_modules/.vite/') !== -1)
@@ -59,9 +59,8 @@ export function vitePluginLibraryPolyfill(
 
       return {
         code: output.code,
-        map: '',
-        warnings: []
-      };
+        map: output.map
+      }
     }
   };
 }
