@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as t from '@babel/types';
+import t from '@babel/types';
 import babel, { NodePath } from '@babel/core';
 
 /**
