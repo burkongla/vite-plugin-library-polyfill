@@ -1,14 +1,15 @@
 {
   "name": "vite-plugin-library-polyfill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "build/vite-plugin-library-polyfill.cjs.js",
   "module": "build/vite-plugin-library-polyfill.esm.js",
   "typings": "build/types/vite-plugin-library-polyfill.d.ts",
   "author": "Spencer17x <1253478653@qq.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Spencer17x/vite-plugin-library-polyfill"
   },
+  "homepage": "https://github.com/Spencer17x/vite-plugin-library-polyfill#readme",
   "keywords": [
     "rollup",
     "vite",
