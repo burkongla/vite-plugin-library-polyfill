@@ -1,6 +1,7 @@
 import * as babel from '@babel/core';
 import generate, { GeneratorResult } from '@babel/generator';
 import { polyfillUndeclaredVariable } from './polyfill';
+import { TraverseOptions } from '@babel/traverse'
 
 const commonJSRegex: RegExp = /\b(module\.exports|exports\.\w+|exports\s*=\s*)/;
 const requireRegex: RegExp = /_{0,2}require\s*\(\s*(["'].*?["'])\s*\)/g;
@@ -80,7 +81,7 @@ function isString(text: string) {
 /**
  * babel.traverse
  */
-const visitor = {
+const visitor: TraverseOptions = {
   enter(path: babel.NodePath<babel.types.Node>) {
     /**
      * 填充未声明的变量对其进行声明

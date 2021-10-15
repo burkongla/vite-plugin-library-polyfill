@@ -1,12 +1,9 @@
 import { Plugin } from 'vite';
-import createFilter from './filter';
 import { TransformResult as TransformResult_2 } from 'rollup';
 import { transformUndeclaredVariables } from './lib';
 
 export type Options = {
-  include?: string | string[] | undefined;
-  exclude?: string | string[] | undefined;
-  skipPreBuild?: boolean;
+  include: string[];
 };
 
 /**
@@ -15,24 +12,19 @@ export type Options = {
  * @param options
  */
 export function vitePluginLibraryPolyfill(
-  options: Options = { skipPreBuild: false }
+  options: Options
 ): Plugin {
-  const filter = createFilter(options.include, options.exclude);
   return {
     name: 'vite-plugin-library-polyfill',
     enforce: 'pre',
     transform(code: string, id: string): Promise<TransformResult_2> | TransformResult_2 {
-      if (
-        !filter(id) ||
-        (options.skipPreBuild && id.indexOf('/node_modules/.vite/') !== -1)
-      ) {
-        return null;
+      if (options.include.some(library => id.includes(library))) {
+        const output = transformUndeclaredVariables(code);
+        return {
+          code: output.code,
+          map: output.map
+        };
       }
-      const output = transformUndeclaredVariables(code);
-      return {
-        code: output.code,
-        map: output.map
-      };
     }
   };
 }
