@@ -1,5 +1,5 @@
 {
-    "name": "@burkongla/vite-plugin-library-polyfill",
+    "name": "vite-plugin-library-polyfill",
     "version": "2.1.0",
     "main": "build/vite-plugin-library-polyfill.cjs.js",
     "module": "build/vite-plugin-library-polyfill.esm.js",
