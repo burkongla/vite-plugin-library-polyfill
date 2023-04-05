@@ -46,6 +46,6 @@ jobs:
           yarn run build:prod
       - name: publish package
         run: |
-          npm publish --access public
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
